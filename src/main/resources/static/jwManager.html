@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>教务系统</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">  
+        <link rel="stylesheet" href="css/daohanglan.css">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Language" content="zh-cn" />
+        <meta http-equiv="pragma" content="no-cache">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="expires" content="0">
+    	
+        <style type="text/css" rel="stylesheet">
+        *{
+                margin: 0;
+                padding: 0;
+            }
+            html,body{
+                width: 100%;
+                height: 100%;               
+                background-color: #FFFFFF;
+            }
+            a{
+                display:block;
+            }
+            .left-banner a:link {color:#FFFFFF; } 
+            .left-banner a:visited {color:#FFFFFF; } 
+            .left-banner a:hover {color:#FFFFFF; } 
+            .left-banner a:active {color:#FFFFFF;} 
+            #top a:link {color:#FFFFFF; } 
+            #top a:visited {color:#FFFFFF; } 
+            #top a:hover {color:#FFFFFF; } 
+            #top a:active {color:#FFFFFF;} 
+
+            .main-body{
+                height:79%;
+                border:0px solid gray;
+            }
+            .right-content{
+                width:89%;
+                height:100%;
+                float:right;
+                 border:0px solid gray;
+            }
+
+            .
+        </style>
+        <script type="text/javascript">
+        window.onload=function(){
+         //  var a= document.cookie.split(";");
+        //   var s=a[0];
+           var s = window.sessionStorage.getItem("userId");
+           document.getElementById("userId").innerHTML=s;
+           if(s == null){
+               alert('未登录');
+               window.location.href="jwIndex.html"
+           }
+        }
+
+        </script>
+</head>
+<body>
+    <div class="top-body">
+        <div class="top-icon">
+            <img src="imgs/login_logo.png" width="55%"
+            >
+        </div>
+        <div class="top-right">
+            <ul>
+                <li>
+                    <img src="imgs/people1.png" width="5%">
+                    <span id="username">管理员</span>
+                </li>
+                <li>
+                    <img src="imgs/return1.png" width="5%">
+                    <a href="jwManager.html" style="display: inline;">返回
+                </li>
+                <li>
+                      <img src="imgs/home1.png" width="5%">
+                      <a href="jwIndex.html" style="display: inline;">首页
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-body">
+        <div class="left-banner">
+            <div class="list-style" onmouseover="this.style.background='rgb(239,247,253)'" onmouseout="this.style.background='white'">
+            <a style="font-size:15px;text-decoration:none;color: rgb(34,117,172);" href="manageTeacher.html">教师管理</a>
+            </div>
+           <div class="list-style" onmouseover="this.style.background='rgb(239,247,253)'" onmouseout="this.style.background='white'" >
+                <a style="font-size:15px;text-decoration:none;color: rgb(34,117,172);" href="manageStudent.html">学生管理</a>
+            </div>
+            <div class="list-style" onmouseover="this.style.background='rgb(239,247,253)'" onmouseout="this.style.background='white'" >
+                <a style="font-size:15px;text-decoration:none;color: rgb(34,117,172);" href="manageCourse.html">课程管理</a>
+            </div>
+            <div class="list-style" onmouseover="this.style.background='rgb(239,247,253)'" onmouseout="this.style.background='white'" >
+                <a style="font-size:15px;text-decoration:none;color: rgb(34,117,172);" href="manageTC.html">教师排课</a>
+            </div>
+        </div>
+        <div class="right-content">
+            <img src="imgs/qxkb.png" width="100%">
+        </div>
+    </div>
+</body>
+</html>

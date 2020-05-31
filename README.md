@@ -1,11 +1,11 @@
-# Edusystem
+# HNU_Edusystem
 模拟湖大教务系统
 
 # 前端
-## HTML CSS JUQERY BOOTSTRAP
+HTML CSS JUQERY BOOTSTRAP
 
 # 后端
-## JAVA Hibernate
+JAVA Hibernate
 
 # 项目环境
-## IDEA WEBSTORM
+IDEA WEBSTORM

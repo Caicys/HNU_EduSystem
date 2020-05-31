@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>教务管理系统</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content=""> 
+    <link rel="stylesheet" href="css/bootstrap.min.css"> 
+    <script src="js/bootstrap.min.js"></script> 
+    <script src="js/jquery.min.js"></script>
+
+        <style type="text/css" rel="stylesheet">
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            html,body{
+                width: 100%;
+                height: 100%;               
+        		background-color:rgb(23,142,226,.9);
+                background-size: 100%100%;
+        	}
+        	.div-mid{
+        		height:100%;
+        		border:1px solid gray;
+                margin:0;
+                background: rgba(225,225,225,0.25);
+            }
+        	.div-top{
+        		height:15%;
+                line-height: 80px;
+                font-size: 60px;
+                color: white;
+                margin-top: 2%;
+                margin-left:13%;
+                font-family: 微软雅黑;
+        	}
+        	.main-content{
+        		width:100%;
+        		height:30%;
+                margin-top: 2%;
+        	}
+            .left-body{
+                position: absolute;
+                width: 40%;
+                height: 30%;
+                float: left;
+                margin-left:13%;
+            }
+        	.right-body{
+                position: absolute;
+                z-index: 2;
+                background-color:white;
+        		width:28%;
+        		margin-left: 55%;
+        		border:0px solid gray;
+                border-radius: 10px;
+                margin-right: 15%;
+
+            }
+            .heart{   
+                font-size: 20px;
+                font-family: 微软雅黑;
+                font-weight: 800;
+                color: rgb(23,142,226,.9);
+                height:50px;   
+                line-height:50px;    
+                padding-left:20px;
+                margin-bottom: 20px;       
+            }  
+        	.right-body1{
+        		width:100%;
+        		height:12%;
+        		border:0px solid gray;
+
+        	}
+        	.right-body2{
+        		width:100%;
+        		height:82%;	
+                padding:5px;
+                float: left;
+        		border:0px solid gray;
+                margin-left: 7%;
+
+            }
+        	
+    	</style>
+    	<script type="text/javascript">
+            $(document).ready(function () {
+            });
+    		function getAdd(){
+    			var obj = document.getElementById("way"); //定位select
+				var index = obj.selectedIndex; // 选中索引
+				var text = obj.options[index].text; // 选中值
+    			//alert(text)
+    			if(text==="管理员"){
+                    var type = 0;
+                    var uname = $("#username").val();
+                    var upass = $("#userpass").val();
+                    var urlStr = 'http://localhost:8080/edu/login/confirm?type='+type+'&id='+uname+'&password='+upass;
+                //    alert(urlStr);
+                    $.ajax({
+                        url:urlStr,
+                        dataType:'json',
+                        async:false,
+                        success:function (obj) {
+                            if(obj.code === 0){
+                             //   document.cookie = uname;
+                                window.sessionStorage.setItem("userId", uname);
+                                var f=document.getElementById("myform");
+                                f.action="jwManager.html";
+                                f.submit()
+                            }
+                            else{
+                                alert(obj.message)
+                            }
+                        },
+                        error:function (error) {
+                            alert("can't connected to server !");
+                            console.log(error)
+                            }
+                    })
+    		    }
+    			else if(text==="教师"){
+                    var type = 1;
+                    var uname = $("#username").val();
+                    var upass = $("#userpass").val();
+                    var urlStr = 'http://localhost:8080/edu/login/confirm?type='+type+'&id='+uname+'&password='+upass;
+                 //   alert(urlStr)
+                     $.ajax({
+                         url:urlStr,
+                         dataType:'json',
+                         async:false,
+                            success:function (obj) {
+                                if(obj.code === 0){
+                                    window.sessionStorage.setItem("userId", uname);
+                                    var f=document.getElementById("myform");
+                                    f.action="jwTeacher.html";
+                                    f.submit()
+                                }else {
+                                    alert(obj.message)
+                                }
+                            },
+                        error:function (error) {
+                        console.log(error)
+                    }
+                })
+    		}
+				else if(text==="学生"){
+                     var type = 2;
+                    var uname = $("#username").val()
+                    var upass = $("#userpass").val()
+                    var urlStr = 'http://localhost:8080/edu/login/confirm?type='+type+'&id='+uname+'&password='+upass
+                   // alert(urlStr)
+                     $.ajax({
+                        url:urlStr,
+                        dataType:'json',
+                         async:false,
+                            success:function (obj) {
+                                if(obj.code === 0){
+                                    window.sessionStorage.setItem("userId", uname);
+                                    var f=document.getElementById("myform");
+                                    f.action="jwStudent.html";
+                                    f.submit()
+                                }else {
+                                    alert(obj.message)
+                                }
+                            },
+                        error:function (error) {
+                        console.log(error)
+                    }
+                })
+    			}
+    		}
+
+    	</script>
+        
+</head>
+<body>
+	<div class="div-mid">
+        <div class="div-top">
+            <img src="imgs/login_logo.png" width="50%"x>
+        </div>
+		<div class="main-content">
+            <div class="left-body" style="z-index: 2;">
+                 <img src="imgs/login_icon.png" width="100%">
+            </div>
+			<div class="right-body">
+				<div class="right-body2">
+                    <div>
+                        <img src="imgs/people1.png" width="28px;" style="padding-top: 10px;">
+                        <span class="heart" style="position: absolute;">用户登录</span>       
+                    </div>
+                    <div style=" width: 80%;border-bottom:1px solid #d2e9f9;margin-top:5px;margin-bottom:10px;"></div>
+                    
+				<form id="myform" action="" onsubmit="getAdd()" method="get">
+					<div class="row show-grid">
+                        <div class="col-sm-3" style="font-weight: 500;color: gray;padding-top: 5px;padding-bottom:5px;">
+                            用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;户：
+                        </div>
+                        <div class="col-sm-9">
+					       <select id="way" class="selectpicker" style="width:73%;border:0.5px solid gray;padding:5px 5px 5px 5px">
+                            <option value="manager">管理员</option>
+                            <option value="teacher">教师</option>
+                            <option value="student">学生</option></select>
+                        </div>
+                    </div><br>
+                    <div class="row show-grid">
+                        <div class="col-sm-3" style="font-weight: 500;color: gray;padding-top: 2px;padding-bottom:2px;">
+					       用&nbsp;&nbsp;户&nbsp;&nbsp;名：
+                        </div>
+                        <div class="col-sm-9">
+                            <input style="width:73%;padding-top: 2px;padding-bottom:2px;padding-left:5px;" type="text" id="username">
+                        </div>
+                    </div><br>
+                    <div class="row show-grid">
+                        <div class="col-sm-3" style="font-weight: 500;color: gray;padding-top: 2px;padding-bottom:2px;">
+					       密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：
+                        </div>
+                        <div class="col-sm-9">
+                            <input style="width:73%;padding-top: 2px;padding-bottom:2px;padding-left:5px;" type="password" id="userpass"><br>
+                        </div>
+                    </div><br>
+                    <div class="row show-grid">
+                        <div class="col-sm-3">
+                        </div>
+                        <div class="col-sm-3">
+                            <button class="btn btn-default" style="position: absolute; width:100%;background-color: rgb(69,165,235);border:0px;color: white;" type="submit">
+                                登陆
+                            </button>
+                        </div>
+                    </div><br>
+                    <p style="font-size:12px;color: red;margin-top: 50px;margin-bottom:30px;">支持基于IE10+和Chrome75+内核的浏览器</p>
+				</form>
+			</div>
+		</div>
+	</div>
+    <footer class="footer" style="width: 99%; position: absolute;bottom: 0px; line-height: 18px;font-size: 12px;">
+        <div style="margin-top: 24px;text-align: center;">技术支持：QQ875556615</div>
+        <div style="text-align: center;">Copyright © 2020 计科1704第7小组</div>
+    </footer>
+    </div>
+</body>
+</html>
